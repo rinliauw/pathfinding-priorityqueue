@@ -22,6 +22,7 @@ def main():
         print("usage: python3 -m search path/to/input.json", file=sys.stderr)
         sys.exit(1)
 
+    print(data)
     # TODO:
     # Find and print a solution to the board configuration described
     # by `data`.
