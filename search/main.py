@@ -8,6 +8,7 @@ This script contains the entry point to the program (the code in
 
 import sys
 import json
+from .token import Token
 
 # If you want to separate your code into separate files, put them
 # inside the `search` directory (like this one and `util.py`) and
@@ -22,7 +23,11 @@ def main():
         print("usage: python3 -m search path/to/input.json", file=sys.stderr)
         sys.exit(1)
 
-    print(data)
+    board = Board(4);
+    
+    token1 = Token((1, 1), 's', 'upper')
+    print(token1.category)
+    print(token1.team)
     # TODO:
     # Find and print a solution to the board configuration described
     # by `data`.
