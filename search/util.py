@@ -150,3 +150,47 @@ def print_board(board_dict, message="", compact=True, ansi=False, **kwargs):
     # fill in the template to create the board drawing, then print!
     board = template.format(multiline_message, *cells)
     print(board, **kwargs)
+
+def distance(point1, point2):
+    x1 = point1[0]
+    y1 = point1[0]
+    z1 = - x1 - y1
+    x2 = point2[0]
+    y2 = point2[1]
+    z2 = - x1 - x2
+    return (abs(x1 - x2) + abs(y1 - y2) + abs(z1 - z2)) / 2
+
+def calc_g_cost(start, current):
+    return distance(start, current)
+
+def calc_h_cost(current, end):
+    return distance(current, end)
+
+def calc_f_cost(start, current, end):
+    return calc_g_cost(start, current) + calc_h_cost(current, end)
+
+#check if the position is inside the board range
+def inside_board(position):
+    #convert to cube coordinate for easier calculation
+    x = position[0]
+    y = position[1]
+    z = - x - y
+    if (abs(x) <= 4) & (abs(y) <= 4) & (abs(z) <= 4) & ((x + y + z) == 0):
+        return True
+    else:
+        return False
+
+#a function that return all the neighbours of a position
+def get_neighbours(position):
+    axial_movement = [(1, -1), (1, 0), (0, 1), (-1, 1), (-1, 0), (0, -1)]
+
+    neighbours_list = []
+    r = position[0]
+    q = position[1]
+
+    for dr, dq in axial_movement:
+        new_r = r + dr
+        new_q = q + dq
+        if inside_board((new_r, new_q)):
+            neighbours_list.append((r + dr, q+ dq))
+    return neighbours_list

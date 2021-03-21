@@ -1,24 +1,29 @@
+from .token import Token
 class Board:
 
 	#class attribute
-	tokens = []
-	blocked_hex = None
-	radius = None
-	two_d = None
+	axial_movement = [(1, -1), (1, 0), (0, 1), (-1, 1), (-1, 0), (0, -1)]
 
 	#class contructor
-	def __init__(self, radius):
-		self.radius = radius
-
-	#def create_array():
-		
-	#set a hex to be blocked
-	def set_blocked_hex(position):
-		self.blocked_hex.append(position)
+	def __init__(self):
+		self.upper_tokens = []
+		self.lower_tokens = []
+		self.block_tokens = []
 
 	#add a token to the board
-	def add_token(token):
-		self.tokens.append(token)
+	def add_token_upper(self, token):
+		self.upper_tokens.append(token)
 
-	#check if the position is inside the board range
-	#def inside_board(position):
+	#add a token to the board
+	def add_token_lower(self, token):
+		self.lower_tokens.append(token)	
+
+	#add a token to the board
+	def add_token_block(self, token):
+		self.block_tokens.append(token)
+
+	def find_token_paths(self):
+		for token in self.upper_tokens:
+			token.get_viable_target(self.lower_tokens)
+			token.get_nearest_target()
+			token.get_token_path(self.block_tokens)

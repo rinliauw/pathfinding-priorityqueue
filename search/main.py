@@ -11,6 +11,8 @@ import sys
 import json
 from .token import Token
 from .board import Board
+from .hexpath import HexPath
+from .priorityQueue import PriorityQueue
 
 # from .board import Board
 
@@ -27,38 +29,27 @@ def main():
         print("usage: python3 -m search path/to/input.json", file=sys.stderr)
         sys.exit(1)
 
-    # board = Board(4);
+    main_board = Board();
+    board_dict = {}
 
-    # bikin tokennya
-    # mskin ke board
-
-    dict = {}
-    count = 1
-
-    tokens_list = []
+    print(data)
+    
     # makes object (token) from json file
-    for i in data.keys():
-        #print(data[i]);
-        for j in data[i]:
-            #print(j);
-            token = Token((j[1],j[2]), j[0], i);
-            tokens_list.append(token)
-            #how to make multiple tokens?
-            print(count, token.category, token.team, token.position)
-            count += 1
-    print(tokens_list)
+    for team, descriptions in data.items():
+        if descriptions == []:
+            continue
+        for description in descriptions:
+            new_token = Token((description[1],description[2]), description[0], team);
+            if team == 'upper':
+                main_board.add_token_upper(new_token)
+            elif team == 'lower':
+                main_board.add_token_lower(new_token)
+            elif team == 'block':
+                main_board.add_token_block(new_token)
 
-    # adds tokens to board
-    board_state = Board(tokens_list)
-    print(board_state)
+            if team == 'block':
+                board_dict[(description[1], description[2])] = team
+            else:
+                board_dict[(description[1], description[2])] = description[0]
 
-    #token1 = Token((1, 1), 's', 'upper')
-    #print(token1.category)
-    #print(token1.team)
-
-    # TODO:
-    # Find and print a solution to the board configuration described
-    # by `data`.
-    # Why not start by trying to print this configuration out using the
-    # `print_board` helper function? (See the `util.py` source code for
-    # usage information).
+    main_board.find_token_paths()
