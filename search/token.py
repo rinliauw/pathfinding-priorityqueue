@@ -82,3 +82,6 @@ class Token:
 			print(current_hex.position)
 			current_hex = current_hex.parent
 		print(current_hex.position)
+
+	def slide(new_position):
+		self.position = new_position
