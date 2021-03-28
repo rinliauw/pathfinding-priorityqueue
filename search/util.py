@@ -151,23 +151,21 @@ def print_board(board_dict, message="", compact=True, ansi=False, **kwargs):
     board = template.format(multiline_message, *cells)
     print(board, **kwargs)
 
+################################################################
 def distance(point1, point2):
     x1 = point1[0]
-    y1 = point1[0]
+    y1 = point1[1]
     z1 = - x1 - y1
     x2 = point2[0]
     y2 = point2[1]
-    z2 = - x1 - x2
+    z2 = - x2 - y2
     return (abs(x1 - x2) + abs(y1 - y2) + abs(z1 - z2)) / 2
-
-def calc_g_cost(start, current):
-    return distance(start, current)
 
 def calc_h_cost(current, end):
     return distance(current, end)
 
-def calc_f_cost(start, current, end):
-    return calc_g_cost(start, current) + calc_h_cost(current, end)
+def calc_f_cost(current, end, g_cost):
+    return calc_h_cost(current, end) + g_cost
 
 #check if the position is inside the board range
 def inside_board(position):
@@ -194,3 +192,40 @@ def get_neighbours(position):
         if inside_board((new_r, new_q)):
             neighbours_list.append((r + dr, q+ dq))
     return neighbours_list
+
+def find_duplicate(target_list):
+    for i in range(len(target_list)):
+        for j in range(1, len(target_list)):
+            if (target_list[i] == target_list[j]):
+                return (i, j)
+    return None
+
+def get_swing_position(current_position, swing_position):
+    axial_movement = [(1, -1), (1, 0), (0, 1), (-1, 1), (-1, 0), (0, -1)]
+    swing_movement = []
+    swing_diff = [-1, 0, 1]
+    position_result = []
+
+    (dx, dy) = (swing_position[0] - current_position[0], swing_position[1] - current_position[1])
+    for i in range(len(axial_movement)):
+        if (dx, dy) == axial_movement[i]:
+            break
+
+    if i == 0:
+        swing_movement.append(axial_movement[0])
+        swing_movement.append(axial_movement[-1])
+        swing_movement.append(axial_movement[1])
+    else:
+        for diff in swing_diff:
+            swing_movement.append(axial_movement[i + diff - len(axial_movement)])
+
+    for dr, dq in swing_movement:
+        position_result.append((swing_position[0] + dr, swing_position[1] + dq))
+
+    for j in range(len(position_result)):
+        if not (inside_board(position_result[j])):
+            del position_result[j]
+    if position_result == []:
+        return None
+    return position_result
+

@@ -13,6 +13,7 @@ from .token import Token
 from .board import Board
 from .hexpath import HexPath
 from .priorityQueue import PriorityQueue
+from .util import *
 
 # from .board import Board
 
@@ -29,11 +30,9 @@ def main():
         print("usage: python3 -m search path/to/input.json", file=sys.stderr)
         sys.exit(1)
 
-    main_board = Board();
+    main_board = Board()
     board_dict = {}
 
-    print(data)
-    
     # makes object (token) from json file
     for team, descriptions in data.items():
         if descriptions == []:
@@ -52,4 +51,9 @@ def main():
             else:
                 board_dict[(description[1], description[2])] = description[0]
 
-    main_board.find_token_paths()
+    print_board(board_dict)
+
+    while (len(main_board.lower_tokens) > 0):
+        main_board.find_token_paths()
+        main_board.move_tokens()
+        main_board.turn += 1

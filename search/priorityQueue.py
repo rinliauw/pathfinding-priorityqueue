@@ -12,7 +12,7 @@ class PriorityQueue:
         self.queue.append(data)
   
     # for popping an element based on f_cost. Lower f_cost means higher priority
-    def pop(self):
+    def priority_pop(self):
         if len(self.queue) == 0:
             return None
         if len(self.queue) == 1:
@@ -23,7 +23,7 @@ class PriorityQueue:
         for i in range(len(self.queue)): 
             if self.queue[i].f_cost < self.queue[minimum].f_cost: 
                 minimum = i 
-                item = self.queue[minimum] 
+        item = self.queue[minimum]
         del self.queue[minimum]
         return item
 
