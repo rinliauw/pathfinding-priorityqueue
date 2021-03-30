@@ -28,6 +28,7 @@ class Board:
 	def find_token_paths(self):
 		for my_token in self.upper_tokens:
 			extra_block = []
+			#if there are enemy that can defeat our token, mark their positions as blocked
 			for tokens in self.lower_tokens:
 				if (my_token.category == "s") & (tokens.category == "r"):
 					extra_block.append(tokens.position)
@@ -35,15 +36,17 @@ class Board:
 					extra_block.append(tokens.position)
 				elif (my_token.category == "p") & (tokens.category == "s"):
 					extra_block.append(tokens.position)
-			my_token.get_viable_target(self.lower_tokens)
+			my_token.get_viable_target(self.lower_tokens, self.upper_tokens)
 			my_token.get_nearest_target()
 			my_token.get_token_path(self.block_tokens, extra_block)
 
 	def move_tokens(self):
+		#get all the upper tokens' current location
 		all_current_location = []
 		for token in self.upper_tokens:
 			all_current_location.append(token.position)
 
+		#get all the next move for all the upper tokens
 		next_move_list = []
 		for token in self.upper_tokens:
 			

@@ -57,6 +57,7 @@ def main():
 
     print_board(board_dict)
 
+    #while there are still enemy tokens on board, keep moving upper tokens
     while (len(main_board.lower_tokens) > 0):
         main_board.find_token_paths()
         main_board.move_tokens()

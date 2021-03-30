@@ -193,6 +193,7 @@ def get_neighbours(position):
             neighbours_list.append((r + dr, q+ dq))
     return neighbours_list
 
+#this funtion will return a tupple of 2 index which has the same data
 def find_duplicate(target_list):
     for i in range(len(target_list)):
         for j in range(1, len(target_list)):
@@ -200,21 +201,25 @@ def find_duplicate(target_list):
                 return (i, j)
     return None
 
+#this function will rturn a list of possible swing positions
 def get_swing_position(current_position, swing_position):
     axial_movement = [(1, -1), (1, 0), (0, 1), (-1, 1), (-1, 0), (0, -1)]
     swing_movement = []
     swing_diff = [-1, 0, 1]
     position_result = []
 
+    # finds difference between current and ally
     (dx, dy) = (swing_position[0] - current_position[0], swing_position[1] - current_position[1])
     for i in range(len(axial_movement)):
         if (dx, dy) == axial_movement[i]:
             break
 
+    # if the difference is in index 0
     if i == 0:
         swing_movement.append(axial_movement[0])
         swing_movement.append(axial_movement[-1])
         swing_movement.append(axial_movement[1])
+    # if it is everywhere else
     else:
         for diff in swing_diff:
             swing_movement.append(axial_movement[i + diff - len(axial_movement)])

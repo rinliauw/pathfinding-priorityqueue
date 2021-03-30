@@ -41,6 +41,7 @@ class PriorityQueue:
             if self.queue[i].position == data.position:
                 return self.queue[i].f_cost
 
+    #update the priority of a data in the queue
     def update_priority(self, data, new_cost):
         for i in range(len(self.queue)):
             if self.queue[i].position == data.position:
