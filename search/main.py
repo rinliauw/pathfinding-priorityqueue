@@ -49,7 +49,11 @@ def main():
             if team == 'block':
                 board_dict[(description[1], description[2])] = team
             else:
-                board_dict[(description[1], description[2])] = description[0]
+                if team == 'upper':
+                    board_dict[(description[1], description[2])] = f"({description[0]})"
+                else:
+                    if team == 'lower':
+                        board_dict[(description[1], description[2])] = f"({description[0].upper()})"
 
     print_board(board_dict)
 
