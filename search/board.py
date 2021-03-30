@@ -3,31 +3,29 @@ from .util import *
 
 class Board:
 
-	#class attribute
+	# class attribute
 	axial_movement = [(1, -1), (1, 0), (0, 1), (-1, 1), (-1, 0), (0, -1)]
 
-	#class contructor
+	# class contructor
 	def __init__(self):
 		self.upper_tokens = []
 		self.lower_tokens = []
 		self.block_tokens = []
 		self.turn = 1
 
-	#add a token to the board
-	def add_token_upper(self, token):
-		self.upper_tokens.append(token)
+	# add a token to the board
+	def add_token(self, token_type, token):
+		if token_type == 'upper':
+			self.upper_tokens.append(token)
+		elif token_type == 'lower':
+			self.lower_tokens.append(token)
+		else:
+			self.block_tokens.append(token)
 
-	#add a token to the board
-	def add_token_lower(self, token):
-		self.lower_tokens.append(token)	
-
-	#add a token to the board
-	def add_token_block(self, token):
-		self.block_tokens.append(token)
-
+	# finds path
 	def find_token_paths(self):
 		for my_token in self.upper_tokens:
-			extra_block = []
+			extra_block = [] # treats lower token's enemies as blocks
 			for tokens in self.lower_tokens:
 				if (my_token.category == "s") & (tokens.category == "r"):
 					extra_block.append(tokens.position)
@@ -36,7 +34,7 @@ class Board:
 				elif (my_token.category == "p") & (tokens.category == "s"):
 					extra_block.append(tokens.position)
 			my_token.get_viable_target(self.lower_tokens)
-			my_token.get_nearest_target()
+			my_token.get_nearest_target(self.upper_tokens)
 			my_token.get_token_path(self.block_tokens, extra_block)
 
 	def move_tokens(self):
@@ -46,17 +44,16 @@ class Board:
 
 		next_move_list = []
 		for token in self.upper_tokens:
-			
-			print(token.path)
-			next_position = token.path[0]
+			next_position = token.path[0] # next move is the first element
 
-			#check is swing is possible and optimal
+			# check is swing is possible and optimal
 			possible_move = token.check_swing(all_current_location)
 			if (possible_move != None):
 				next_position = possible_move
 
-			next_move_list.append(next_position);
-		
+			next_move_list.append(next_position)
+
+		####???????????
 		#if next_move_list cotains duplicate, check for clash.
 		if (any(next_move_list.count(element) > 1 for element in next_move_list)):
 			(first, second) = find_duplicate(next_move_list)
@@ -67,23 +64,23 @@ class Board:
 				second_token.get_token_path(self.block_tokens, [next_move_list[first]])
 				next_move_list[second] = second_token.path[0]
 
-		#iterate through the upper tokens to move
+		# iterate through the upper tokens to move
 		for iterator in range(len(self.upper_tokens)):
 			current_token = self.upper_tokens[iterator]
 			
-			if distance(next_move_list[iterator], current_token.position) > 1:
+			if distance(next_move_list[iterator], current_token.position) > 1: # distance >1 if can jump
 				current_token.swing(next_move_list[iterator], self.turn)
 			else:
 				current_token.slide(next_move_list[iterator], self.turn)
 
-			#iterate through viable target to check if the token defeats any token
+			# iterate through viable target to check if the token defeats any token
 			for j in range(len(current_token.viable_target)):
 
-				#if yes, then remove the enemy token
+				# if yes, then remove the enemy token
 				if current_token.viable_target[j].position == next_move_list[iterator]:
 					del current_token.viable_target[j]
 
-					#iterate through lower tokens to remove enemy token
+					# iterate through lower tokens to remove enemy token
 					for i in range(len(self.lower_tokens)):
 						if (self.lower_tokens[i].position == next_move_list[iterator]):
 							current_token.target = None

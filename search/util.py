@@ -152,6 +152,8 @@ def print_board(board_dict, message="", compact=True, ansi=False, **kwargs):
     print(board, **kwargs)
 
 ################################################################
+
+# calculates Manhattan distance in a hexagonal grid
 def distance(point1, point2):
     x1 = point1[0]
     y1 = point1[1]
@@ -167,9 +169,9 @@ def calc_h_cost(current, end):
 def calc_f_cost(current, end, g_cost):
     return calc_h_cost(current, end) + g_cost
 
-#check if the position is inside the board range
+# check if the position is inside the board range
 def inside_board(position):
-    #convert to cube coordinate for easier calculation
+    # convert to cube coordinate for easier calculation
     x = position[0]
     y = position[1]
     z = - x - y
@@ -178,7 +180,7 @@ def inside_board(position):
     else:
         return False
 
-#a function that return all the neighbours of a position
+# function that return all the neighbours of a position
 def get_neighbours(position):
     axial_movement = [(1, -1), (1, 0), (0, 1), (-1, 1), (-1, 0), (0, -1)]
 
@@ -201,31 +203,37 @@ def find_duplicate(target_list):
     return None
 
 def get_swing_position(current_position, swing_position):
-    axial_movement = [(1, -1), (1, 0), (0, 1), (-1, 1), (-1, 0), (0, -1)]
-    swing_movement = []
+    axial_movement = [(1, -1), (1, 0), (0, 1), (-1, 1), (-1, 0), (0, -1)] # adjacent hex coordinates
+    swing_movement = [] # possible swing moves
     swing_diff = [-1, 0, 1]
     position_result = []
 
+    # finds difference bebtween current position and ally's position
     (dx, dy) = (swing_position[0] - current_position[0], swing_position[1] - current_position[1])
+
+    # if difference in axial_movement, break -> we move to alley's point of view
     for i in range(len(axial_movement)):
         if (dx, dy) == axial_movement[i]:
             break
 
-    if i == 0:
+    if i == 0: # if target is on our left, append 3 of the axial swing movements
         swing_movement.append(axial_movement[0])
         swing_movement.append(axial_movement[-1])
         swing_movement.append(axial_movement[1])
     else:
         for diff in swing_diff:
-            swing_movement.append(axial_movement[i + diff - len(axial_movement)])
+            swing_movement.append(axial_movement[i + diff - len(axial_movement)]) #???
 
+    # appends position result after transformed by swing axial movements
     for dr, dq in swing_movement:
         position_result.append((swing_position[0] + dr, swing_position[1] + dq))
 
-    for j in range(len(position_result)):
-        if not (inside_board(position_result[j])):
-            del position_result[j]
+
+    # removes position result not in board
+    for position in position_result:
+        if not (inside_board(position)):
+            del position
+
     if position_result == []:
         return None
     return position_result
-
