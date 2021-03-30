@@ -222,9 +222,10 @@ def get_swing_position(current_position, swing_position):
     for dr, dq in swing_movement:
         position_result.append((swing_position[0] + dr, swing_position[1] + dq))
 
-    for j in range(len(position_result)):
-        if not (inside_board(position_result[j])):
-            del position_result[j]
+    for pos in position_result:
+        if not inside_board(pos):
+            del pos
+
     if position_result == []:
         return None
     return position_result

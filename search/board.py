@@ -47,7 +47,6 @@ class Board:
 		next_move_list = []
 		for token in self.upper_tokens:
 			
-			print(token.path)
 			next_position = token.path[0]
 
 			#check is swing is possible and optimal
@@ -90,4 +89,3 @@ class Board:
 							del self.lower_tokens[i]
 							break
 					break
-
