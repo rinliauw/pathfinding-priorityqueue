@@ -33,26 +33,31 @@ def main():
     main_board = Board()
     board_dict = {}
 
-    # reads data into Token object's attributes
+    # makes object (token) from json file
     for team, descriptions in data.items():
         if descriptions == []:
             continue
         for description in descriptions:
             new_token = Token((description[1],description[2]), description[0], team);
-            main_board.add_token(team, new_token)
-            # makes dictionary as input format for print_board
+            if team == 'upper':
+                main_board.add_token_upper(new_token)
+            elif team == 'lower':
+                main_board.add_token_lower(new_token)
+            elif team == 'block':
+                main_board.add_token_block(new_token)
+
             if team == 'block':
                 board_dict[(description[1], description[2])] = team
             else:
                 if team == 'upper':
-                    board_dict[(description[1], description[2])] = f"({description[0].upper()})"
+                    board_dict[(description[1], description[2])] = f"({description[0]})"
                 else:
                     if team == 'lower':
-                        board_dict[(description[1], description[2])] = f"({description[0]})"
+                        board_dict[(description[1], description[2])] = f"({description[0].upper()})"
 
     print_board(board_dict)
 
-    # finds path moves until all tokens are defeated
+    #while there are still enemy tokens on board, keep moving upper tokens
     while (len(main_board.lower_tokens) > 0):
         main_board.find_token_paths()
         main_board.move_tokens()
