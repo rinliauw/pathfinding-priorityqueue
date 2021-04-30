@@ -1,26 +1,27 @@
 from token import Token
 
 class Board:
-
-	#class attribute
-	axial_movement = [(1, -1), (1, 0), (0, 1), (-1, 1), (-1, 0), (0, -1)]
-
 	#class contructor
 	def __init__(self):
-		self.upper_tokens = []
-		self.lower_tokens = []
-		self.block_tokens = []
-		self.turn = 1
+		self.upper_tokens = [] # list of all my tokens
+		self.lower_tokens = [] # list of all opponent tokens
 
 	#add a token to the board
-	def add_token_upper(self, token):
-		self.upper_tokens.append(token)
+	def add_token(self, token, player):
+		if player == 'upper':
+			self.upper_tokens.append(token)
+		else:
+			self.lower_tokens.append(token)
 
-	#add a token to the board
-	def add_token_lower(self, token):
-		self.lower_tokens.append(token)	
-
-	#add a token to the board
-	def add_token_block(self, token):
-		self.block_tokens.append(token)
-
+	# update token's position in board
+	def update_token(self, action, player):
+		if player == 'upper':
+			for token in self.upper_tokens:
+				if token.position == action[1]:
+					token.position = action[2]
+				break
+		elif player == 'lower':
+			for token in self.lower_tokens:
+				if token.position == action[1]:
+					token.position = action[2]
+				break

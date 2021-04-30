@@ -1,5 +1,6 @@
 
 from board import Board
+from token import Token
 
 class Player:
 
@@ -12,13 +13,14 @@ class Player:
         play as Upper), or the string "lower" (if the instance will play
         as Lower).
         """
-        # put your code here
         self.board = Board()
-        self.player = player
 
-        self.board.upper_tokens = [] 
-
-
+        if player == 'upper':
+            opponent_player = 'lower'
+        else:
+            opponent_player = 'upper'
+        
+        self.player_list = [player, opponent_player] # upper, lower or lower, upper
 
 
     def action(self):
@@ -37,12 +39,22 @@ class Player:
         The parameter opponent_action is the opponent's chosen action,
         and player_action is this instance's latest chosen action.
         """
-        # put your code here : update board state !!
-        # opponent action in tuple
 
-
-
+        action = [opponent_action, player_action]
+        for i in range(len(action)):
+            if action[i][0] == "THROW": # if throw
+                token = Token(action[i][2], action[i][1], self.player_list[i])
+                self.board.add_token(token, self.player_list[i])
+            # perlu store throw / slide / swing ga?
+            else: # if slide or swing, update existing token
+                self.board.update_token(action[i], self.player_list[i])
 
 if __name__ == "__main__":
-    player = Player()
+    player = Player('upper')
     player.__init__('upper')
+    player.update(("THROW",'s', (-4,2)), ("THROW",'p', (4,-1))) # upper is 4,-1. lower is -4,2
+    print(player.board.lower_tokens[0].position) # upper is 4,-1
+    print(player.board.upper_tokens[0].position) # lower is -4,2
+    player.update(("SLIDE",(-4,2), (-3,1)), ("SLIDE",(4,-1), (3,-1)))
+    print(player.board.lower_tokens[0].position) # upper is 4,-1
+    print(player.board.upper_tokens[0].position) # lower is -4,2
