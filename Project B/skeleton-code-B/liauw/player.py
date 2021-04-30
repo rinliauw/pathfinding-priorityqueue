@@ -1,5 +1,8 @@
 
+from board import Board
+
 class Player:
+
     def __init__(self, player):
         """
         Called once at the beginning of a game to initialise this player.
@@ -10,6 +13,13 @@ class Player:
         as Lower).
         """
         # put your code here
+        self.board = Board()
+        self.player = player
+
+        self.board.upper_tokens = [] 
+
+
+
 
     def action(self):
         """
@@ -18,6 +28,7 @@ class Player:
         """
         # put your code here
     
+
     def update(self, opponent_action, player_action):
         """
         Called at the end of each turn to inform this player of both
@@ -26,5 +37,12 @@ class Player:
         The parameter opponent_action is the opponent's chosen action,
         and player_action is this instance's latest chosen action.
         """
-        # put your code here
+        # put your code here : update board state !!
+        # opponent action in tuple
 
+
+
+
+if __name__ == "__main__":
+    player = Player()
+    player.__init__('upper')

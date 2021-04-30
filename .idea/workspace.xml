@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5cf36833-6c23-4a0b-b6fa-8e18886533a0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/ai_project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ai_project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search.zip" beforeDir="false" afterPath="$PROJECT_DIR$/search.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search/hex.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1pvKn3oBW7FZaxGEGqnUDJPwxZN" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5cf36833-6c23-4a0b-b6fa-8e18886533a0" name="Default Changelist" comment="" />
+      <created>1616058288130</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1616058288130</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="215" y="98" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1617115660269">
+      <screen x="0" y="25" width="1440" height="828" />
+    </state>
+    <state x="215" y="98" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1440.828@0.25.1440.828" timestamp="1617115660269" />
+    <state x="364" y="25" key="CommitChangelistDialog2" timestamp="1616058354452">
+      <screen x="47" y="25" width="1393" height="875" />
+    </state>
+    <state x="364" y="25" key="CommitChangelistDialog2/47.25.1393.875@47.25.1393.875" timestamp="1616058354452" />
+    <state x="375" y="239" key="com.intellij.ide.util.TipDialog" timestamp="1617083681499">
+      <screen x="0" y="25" width="1440" height="828" />
+    </state>
+    <state x="375" y="239" key="com.intellij.ide.util.TipDialog/0.25.1440.828@0.25.1440.828" timestamp="1617083681499" />
+    <state x="408" y="251" key="com.intellij.ide.util.TipDialog/44.25.1396.875@44.25.1396.875" timestamp="1616843141922" />
+    <state x="409" y="251" key="com.intellij.ide.util.TipDialog/46.25.1394.875@46.25.1394.875" timestamp="1616419188888" />
+    <state x="410" y="251" key="com.intellij.ide.util.TipDialog/47.25.1393.875@47.25.1393.875" timestamp="1616062686680" />
+    <state x="726" y="28" width="874" height="828" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617033143501">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="726" y="28" width="874" height="828" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1617033143501" />
+    <state x="363" y="185" width="693" height="640" key="search.everywhere.popup" timestamp="1617076869561">
+      <screen x="0" y="25" width="1440" height="828" />
+    </state>
+    <state x="363" y="174" width="693" height="696" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1617035950402" />
+    <state x="363" y="185" width="693" height="640" key="search.everywhere.popup/0.25.1440.828@0.25.1440.828" timestamp="1617076869561" />
+    <state x="398" y="194" width="670" height="676" key="search.everywhere.popup/47.25.1393.875@47.25.1393.875" timestamp="1616059021564" />
+  </component>
+</project>

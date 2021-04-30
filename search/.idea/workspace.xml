@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ff297654-163b-44dc-8d26-18a0268a1f95" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/ai_project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/ai_project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../search.zip" beforeDir="false" afterPath="$PROJECT_DIR$/../search.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hex.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1qTu1nMjiAR8Ff7b5zbt3RK74C6" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ff297654-163b-44dc-8d26-18a0268a1f95" name="Default Changelist" comment="" />
+      <created>1617115688606</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1617115688606</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="427" y="268" key="com.intellij.ide.util.TipDialog" timestamp="1617115692492">
+      <screen x="0" y="25" width="1440" height="828" />
+    </state>
+    <state x="427" y="268" key="com.intellij.ide.util.TipDialog/0.25.1440.828@0.25.1440.828" timestamp="1617115692492" />
+  </component>
+</project>
