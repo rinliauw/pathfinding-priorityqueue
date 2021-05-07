@@ -1,6 +1,5 @@
-
-from board import Board
-from token import Token
+from .board import Board
+from .token import Token
 
 class Player:
 
