@@ -3,8 +3,9 @@ from token import Token
 class Board:
 	#class contructor
 	def __init__(self):
-		self.upper_tokens = [] # list of all my tokens
-		self.lower_tokens = [] # list of all opponent tokens
+		self.upper_tokens = [] # list of all upper tokens
+		self.lower_tokens = [] # list of all lower tokens
+		self.turns = 0 # initial turns
 
 	#add a token to the board
 	def add_token(self, token, player):
@@ -25,3 +26,8 @@ class Board:
 				if token.position == action[1]:
 					token.position = action[2]
 				break
+
+	# checks if the game is finished
+	def check_finished(self, action, player):
+		if self.turns == 360:
+			return True
