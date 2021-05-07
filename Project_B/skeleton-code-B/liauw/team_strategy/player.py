@@ -37,9 +37,6 @@ class Player:
         and player_action is this instance's latest chosen action.
         """
 
-        if (self.board.check_finished()): # checks if game is finished
-            return
-
         action = [opponent_action, player_action]
         for i in range(len(action)):
             if action[i][0] == "THROW": # if throw

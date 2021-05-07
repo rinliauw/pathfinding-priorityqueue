@@ -25,8 +25,10 @@ class Player:
         """
         Called at the beginning of each turn. Based on the current state
         of the game, select an action to play this turn.
+        
         """
         # put your code here
+        self.board.check_finished()
     
     def update(self, opponent_action, player_action):
         """
@@ -37,8 +39,8 @@ class Player:
         and player_action is this instance's latest chosen action.
         """
 
-        if (self.board.check_finished()): # checks if game is finished
-            return
+        # if (self.board.check_finished()): # checks if game is finished
+        #     return
 
         action = [opponent_action, player_action]
         for i in range(len(action)):
@@ -48,8 +50,7 @@ class Player:
                 # perlu store throw / slide / swing ga?
             else: # if slide or swing, update existing token
                 self.board.update_token(action[i], self.player_list[i])
-        self.board.turns = self.board.turns + 1
-
+        
 
 if __name__ == "__main__":
     player = Player('upper')
@@ -60,4 +61,4 @@ if __name__ == "__main__":
     player.update(("SLIDE",(-4,2), (-3,1)), ("SLIDE",(4,-1), (3,-1)))
     print(player.board.lower_tokens[0].position) # upper is 4,-1
     print(player.board.upper_tokens[0].position) # lower is -4,2
-    print(player.board.turns) # checks if turns is updated
+    # print(player.board.turns) # checks if turns is updated
