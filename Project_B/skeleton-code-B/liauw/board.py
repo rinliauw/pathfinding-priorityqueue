@@ -5,6 +5,8 @@ class Board:
 	def __init__(self):
 		self.upper_tokens = [] # list of all my tokens
 		self.lower_tokens = [] # list of all opponent tokens
+		self.upper_throws = 9
+		self.lower_throws = 9
 
 	#add a token to the board
 	def add_token(self, token, player):

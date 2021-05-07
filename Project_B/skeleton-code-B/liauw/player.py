@@ -39,7 +39,7 @@ class Player:
         and player_action is this instance's latest chosen action.
         """
 
-        action = [opponent_action, player_action]
+        action = [player_action, opponent_action]
         for i in range(len(action)):
             if action[i][0] == "THROW": # if throw
                 token = Token(action[i][2], action[i][1], self.player_list[i])
