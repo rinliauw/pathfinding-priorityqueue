@@ -13,13 +13,6 @@ class Player:
         """
         self.board = Board()
 
-        if player == 'upper':
-            opponent_player = 'lower'
-        else:
-            opponent_player = 'upper'
-        
-        self.player_list = [player, opponent_player] # upper, lower or lower, upper
-
 
     def action(self):
         """
@@ -28,7 +21,7 @@ class Player:
         
         """
         # put your code here
-        self.board.check_finished()
+        #self.board.check_finished()
     
     def update(self, opponent_action, player_action):
         """
@@ -42,23 +35,28 @@ class Player:
         # if (self.board.check_finished()): # checks if game is finished
         #     return
 
-        action = [opponent_action, player_action]
-        for i in range(len(action)):
-            if action[i][0] == "THROW": # if throw
-                token = Token(action[i][2], action[i][1], self.player_list[i])
-                self.board.add_token(token, self.player_list[i])
-                # perlu store throw / slide / swing ga?
-            else: # if slide or swing, update existing token
-                self.board.update_token(action[i], self.player_list[i])
+        if opponent_action[0] == "THROW": # if throw
+            token = Token(opponent_action[2], opponent_action[1])
+            self.board.add_token(token, 'opponent')
+            # perlu store throw / slide / swing ga?
+        else: # if slide or swing, update existing token
+            self.board.update_token([opponent_action[1], opponent_action[2]], 'opponent')
         
+        if player_action[0] == "THROW": # if throw
+            token = Token(player_action[2], player_action[1])
+            self.board.add_token(token, 'mine')
+            # perlu store throw / slide / swing ga?
+        else: # if slide or swing, update existing token
+            self.board.update_token([player_action[1], player_action[2]], 'mine')
 
 if __name__ == "__main__":
     player = Player('upper')
     player.__init__('upper')
     player.update(("THROW",'s', (-4,2)), ("THROW",'p', (4,-1))) # upper is 4,-1. lower is -4,2
-    print(player.board.lower_tokens[0].position) # upper is 4,-1
-    print(player.board.upper_tokens[0].position) # lower is -4,2
+    print(player.board.opponent_tokens[0].position) # opponent is -4,2
+    print(player.board.my_tokens[0].position) # mine is 4,-1
+
     player.update(("SLIDE",(-4,2), (-3,1)), ("SLIDE",(4,-1), (3,-1)))
-    print(player.board.lower_tokens[0].position) # upper is 4,-1
-    print(player.board.upper_tokens[0].position) # lower is -4,2
+    print(player.board.opponent_tokens[0].position) # opponent is -3,1
+    print(player.board.my_tokens[0].position) # mine is 3, -1
     # print(player.board.turns) # checks if turns is updated
