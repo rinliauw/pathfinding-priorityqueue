@@ -2,9 +2,10 @@ from token import Token
 
 class Board:
 	#class contructor
-	def __init__(self):
-		self.upper_tokens = [] # list of all upper token
-		self.lower_tokens = [] # list of all lower tokens
+	def __init__(self, team):
+    self.team = team
+		self.my_tokens = [] # list of all upper token
+		self.enemy_tokens = [] # list of all lower tokens
 		self.invincible = {'upper': set(), 'lower': set()}
 		self.defeated_tokens = {'upper': [], 'lower': []} # move upper/lower's token to defeated
 		self.throws_count = {'upper': 0, 'lower': 0} # count of throws
@@ -12,23 +13,23 @@ class Board:
 		self.status = {'upper': None, 'lower': None} # draw, win, lose (according to player 1)
 		self.player = None # marks which team am i
 
+
 	#add a token to the board
 	def add_token(self, token, player):
-		if player == 'upper':
-			self.upper_tokens.append(token)
+		if player == 1:
+			self.my_tokens.append(token)
 		else:
-			self.lower_tokens.append(token)
-		self.player = player
+			self.enemy_tokens.append(token)
 
 	# update token's position in board
 	def update_token(self, action, player):
-		if player == 'upper':
-			for token in self.upper_tokens:
+		if player == 1:
+			for token in self.our_tokens:
 				if token.position == action[1]:
 					token.position = action[2]
 				break
-		elif player == 'lower':
-			for token in self.lower_tokens:
+		else:
+			for token in self.enemy_tokens:
 				if token.position == action[1]:
 					token.position = action[2]
 				break

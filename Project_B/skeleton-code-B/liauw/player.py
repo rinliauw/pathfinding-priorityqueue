@@ -11,14 +11,9 @@ class Player:
         play as Upper), or the string "lower" (if the instance will play
         as Lower).
         """
-        self.board = Board()
-
-        if player == 'upper':
-            opponent_player = 'lower'
-        else:
-            opponent_player = 'upper'
+        self.board = Board(player)
         
-        self.player_list = [player, opponent_player] # upper, lower or lower, upper
+        self.player_list = [1 , -1] # upper, lower or lower, upper
 
 
     def action(self):
@@ -39,16 +34,14 @@ class Player:
         and player_action is this instance's latest chosen action.
         """
 
-        # if (self.board.check_finished()): # checks if game is finished
-        #     return
-
-        action = [opponent_action, player_action]
+        action = [player_action, opponent_action]
         for i in range(len(action)):
-            if action[i][0] == "THROW": # if throw
-                token = Token(action[i][2], action[i][1], self.player_list[i])
-                self.board.add_token(token, self.player_list[i])
-                # perlu store throw / slide / swing ga?
-            else: # if slide or swing, update existing token
+            #if the action is THROW
+            if action[i][0] == "THROW":
+                token = Token(action[i][1], action[i][2])
+                self.board.add_token(token, self.player_list[i]
+            #if the action is SLIDE or SWING
+            else:
                 self.board.update_token(action[i], self.player_list[i])
         
 
