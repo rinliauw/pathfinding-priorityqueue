@@ -74,8 +74,34 @@ if __name__ == "__main__":
     print("Condition 1 (opponent loses):", player.board.status) # mine loses
 
     # test for condition 5
+    player.board.throws_count['mine'] = 5
+    player.board.throws_count['opponent'] = 5
+    player.board.defeated_tokens = {'mine': [(0,1), (0,2)], 'opponent': [(0,2), (0,3)]}
     player.board.turns = 360
     player.board.check_finished() # call function
-    print("Condition 5 :", player.board.status)
+    print("Condition 5 (draw):", player.board.status) # both draw
+    player.board.turns = 0
 
-    # test for condition 2
+    # test for condition 3
+    player.board.throws_count['opponent'] = 9 # max
+    player.board.opponent_tokens = [Token((0,1), 'p')]
+    player.board.throws_count['mine'] = 5
+    player.board.my_tokens = [Token((0,2), 'r'), Token((0,1), 's')]
+    player.board.check_finished() 
+    print("Condition 3 (mine wins):", player.board.status) # mine win, opponent lose
+
+    # test for condition 3: opponent wins
+    player.board.throws_count['mine'] = 9 # max
+    player.board.my_tokens = [Token((0,1), 'p')]
+    player.board.throws_count['opponent'] = 5
+    player.board.opponent_tokens = [Token((0,2), 'r'), Token((0,1), 's')]
+    player.board.check_finished() 
+    print("Condition 3 (opponent wins):", player.board.status) # mine win, opponent lose
+
+    # test for condition 2: Draw
+    player.board.throws_count['mine'] = 9 # max
+    player.board.my_tokens = [Token((0,1), 'p'), Token((0,2), 'p')]
+    player.board.throws_count['opponent'] = 9
+    player.board.opponent_tokens = [Token((0,4), 'r'), Token((0,5), 'p')]
+    player.board.check_finished() 
+    print("Condition 2 (draw):", player.board.status) # mine win, opponent lose
