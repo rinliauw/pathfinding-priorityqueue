@@ -1,4 +1,8 @@
 #this python file is for utility function
+from math import inf
+from .token import Token
+from .board import Board
+import copy
 
 def distance(point1, point2):
     x1 = point1[0]
@@ -83,6 +87,65 @@ def get_swing_position(current_position, swing_position):
         return None
     return position_result
 
-def get_board_value(board){
+def eval_function(board):
+    value = 0
+    avg_distance_all = 0
+
+    #calculate the basic value of the board
+    value -= 2 * len(board.our_tokens)
+    value += 2 * len(board.enemy_tokens)
+    value -= 3 * board.our_throws
+    value += 3 * board.enemy_throws
+
+    for token in board.our_tokens:
+        avg_distance_token = 0
+        token.get_viable_target(board.enemy_tokens)
+        # if there are viable target for the token, get average distance
+        if len(token.viable_target) > 0:
+            for enemy in token.viable_target:
+                avg_distance_token += distance(token.position, enemy.position)
+            avg_distance_token = avg_distance_token / len(token.viable_target)
+        else:
+            avg_distance_token = 3
+        avg_distance_all += avg_distance_token
     
-}
+    value -= avg_distance_all / len(board.our_tokens)
+
+    return value
+
+def get_next_state(board_state):
+		next_state = []
+
+		for token in self.our_token:
+			#get all possible moves for all the token already on board
+			token.get_swing_moves(self.our_token)
+			token.generate_all_slide()
+
+            for next_move in token.possible_moves:
+                new_board_state = copy.deepcopy(board_state)
+
+
+def minimax(board, depth, alpha, beta, maximizingPlayer):
+    if depth == 0:
+        return eval_function(state)
+
+    next_board_state = state.get_next_state()
+    if maximizingPlayer:
+        maxEval = -math.inf
+        for board_state in next_board_state:
+            eval = minimax(board_state, depth - 1, alpha, beta, false)
+            maxEval = max(eval, maxEval)
+            alpha = max(alpha, eval)
+            if beta <= alpha:
+                break    
+        return maxEval
+
+    else:
+        minEval = math.inf
+        for board_state in next_board_state:
+            eval = minimax(board_state, depth - 1, alpha, beta, true)
+            minEval = min(eval, minEval)
+            beta = min(beta, eval)
+            if beta <= alpha:
+                break    
+        return minEval

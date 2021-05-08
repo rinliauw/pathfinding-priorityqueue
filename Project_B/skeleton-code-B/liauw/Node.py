@@ -4,4 +4,5 @@ class Node:
         self.board_state = board
         self.parents = None
     
-    
+    def get_value():
+        

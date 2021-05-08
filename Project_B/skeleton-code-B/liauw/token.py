@@ -2,10 +2,9 @@ from .util import *
 
 class Token:
 #class constructor
-	def __init__(self, position, category, team):
+	def __init__(self, category, position):
 		self.position = position
 		self.category = category
-		self.team = team
 		self.viable_target = []
 		self.possible_moves = []
 	
@@ -13,7 +12,7 @@ class Token:
 		return self.category
 	
 	#iterate through the lower token list, and get all viable target
-	def get_viable_target(self, enemy_list, ally_list):
+	def get_viable_target(self, enemy_list):
 		self.viable_target = []
 		for enemy in enemy_list:
 			if enemy in self.viable_target:
@@ -24,12 +23,6 @@ class Token:
 				self.viable_target.append(enemy)
 			elif (self.category == 'p') & (enemy.category == 'r'):
 				self.viable_target.append(enemy)
-		if (self.viable_target == []):
-			target_ally = self.get_nearest_ally(ally_list)
-			self.target = target_ally.position
-			self.finished = True
-		else:
-			self.finished = False
 
 	#get the nearest target
 	def get_nearest_target(self):
@@ -72,8 +65,8 @@ class Token:
 
 		return ally_list[shortest_distance]
 	
-	def generate_all_slide(){
+	def generate_all_slide():
 		neighbours = get_neighbours(self.position)
-		for each pos in neighbours:
+		for pos in neighbours:
 			possible_moves.append(pos)
-	}
+	
