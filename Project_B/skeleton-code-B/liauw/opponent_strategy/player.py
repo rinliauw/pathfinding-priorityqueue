@@ -60,3 +60,22 @@ if __name__ == "__main__":
     print(player.board.opponent_tokens[0].position) # opponent is -3,1
     print(player.board.my_tokens[0].position) # mine is 3, -1
     # print(player.board.turns) # checks if turns is updated
+
+    # test if for condition 1
+    player.board.throws_count['mine'] = 9
+    player.board.defeated_tokens = {'mine': [(0,1), (0,2), (0,3), (0,4), (0,5), (0,6), (0,7),(0,8), (0,9)], 'opponent': []}
+    player.board.check_finished() # call function
+    print("Condition 1 (mine loses):", player.board.status) # mine loses
+
+
+    player.board.throws_count['opponent'] = 9
+    player.board.defeated_tokens = {'mine': [], 'opponent': [(0,1), (0,2), (0,3), (0,4), (0,5), (0,6), (0,7),(0,8), (0,9)]}
+    player.board.check_finished() # call function
+    print("Condition 1 (opponent loses):", player.board.status) # mine loses
+
+    # test for condition 5
+    player.board.turns = 360
+    player.board.check_finished() # call function
+    print("Condition 5 :", player.board.status)
+
+    # test for condition 2

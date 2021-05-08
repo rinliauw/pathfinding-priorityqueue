@@ -38,10 +38,10 @@ class Board:
 			self.status['mine'] = 'Draw'
 			self.status['opponent'] = 'Draw'
 		# if 1 player has throwed 9 times and all the tokens are defeated
-		elif ((self.throws_count['mine'] == 9) && (len(self.defeated_tokens['mine']) == 9)):
+		elif ((self.throws_count['mine'] == 9) & (len(self.defeated_tokens['mine']) == 9)):
 			self.status['mine'] = 'Lose'
 			self.status['opponent'] = 'Win'
-		elif ((self.throws_count['opponent'] == 9) && (len(self.defeated_tokens['opponent']) == 9)):
+		elif ((self.throws_count['opponent'] == 9) & (len(self.defeated_tokens['opponent']) == 9)):
 			self.status['mine'] = 'Win'
 			self.status['opponent'] = 'Lose'
 		# if p1 throwed 9 times n all p1's tokens cant be defeated by p2's tokens 
@@ -50,10 +50,10 @@ class Board:
 
 	
 	def update_invincible(self):
-		if self.throws_count['opponent'] == 9 && check_invincible():
+		if self.throws_count['opponent'] == 9 & check_invincible():
 			self.status['mine'] = "Win"
 			self.status['opponent'] = 'Lose'
-		else if self.throw_counts['mine'] == 9 && (!check_invincible()):
+		elif self.throw_counts['mine'] == 9 & (not check_invincible()):
 			self.status['mine'] = "Lose"
 			self.status['opponent'] = "Win"
 		else:
@@ -66,12 +66,13 @@ class Board:
 		for my_token in self.my_tokens:
 			for opponent_token in self.opponent_tokens:
 				if opponent_token.category is self.is_beatable(opponent_token.category, my_token.category):
+					return
 					
 
 	def is_beatable(self, opponent_category, my_category):
-		if opponent_category == "s" && my_category == "p":
+		if opponent_category == "s" & my_category == "p":
 			return True
-		elif opponent_category == "p" && my_category == "s":
+		elif opponent_category == "p" & my_category == "s":
 			return False
-		elif opponent_category == "p" && my_category == "r":
+		elif opponent_category == "p" & my_category == "r":
 			return False
